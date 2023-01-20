@@ -33,7 +33,7 @@ async def record_sw_character(api:SwApi, id:int, session):
         id = id,
         birth_year = response['birth_year'],
         eye_color = response['eye_color'],
-        films = ','.join(response['films']),
+        films = response['films'],
         gender = response['gender'],
         hair_color = response['hair_color'],
         height = response['height'],
@@ -41,9 +41,9 @@ async def record_sw_character(api:SwApi, id:int, session):
         mass = response['mass'],
         name = response['name'],
         skin_color = response['skin_color'],
-        species = ','.join(response['species']),
-        starships = ','.join(response['starships']),
-        vehicles = ','.join(response['vehicles']),
+        species = response['species'],
+        starships = response['starships'],
+        vehicles = response['vehicles'],
     )
     session.add(char)
     session.commit()
