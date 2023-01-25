@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import asyncio
 from sqlalchemy.orm import sessionmaker
 
@@ -10,19 +10,18 @@ class SwApi():
         self.api_url = 'https://swapi.dev/api'
 
     def request_people(self, id=None):
-        """Returns response with"""
         _url = f'{self.api_url}/people'
         if id is not None:
             _url += f'/{id}'
         try:
-            response = requests.get(_url)
+            response = aiohttp.get(_url)
             response.raise_for_status()
             return response
         except (
-            requests.exceptions.InvalidSchema,
-            requests.exceptions.ConnectionError,
-            requests.exceptions.Timeout,
-            requests.exceptions.HTTPError,
+            aiohttp.exceptions.InvalidSchema,
+            aiohttp.exceptions.ConnectionError,
+            aiohttp.exceptions.Timeout,
+            aiohttp.exceptions.HTTPError,
         ):
             raise
 
